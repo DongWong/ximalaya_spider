@@ -26,10 +26,10 @@ class Album:
         while save_path.endswith('/'):
             save_path = save_path[:-1]
         # 请求源地址的链接，得到response
-        r_audio_src = self.s.get(audio_src, headers=self.header)
         # 构造保存路径
         m4a_path = '%s/%s.m4a' % (save_path, audio_title)
         if not os.path.exists(m4a_path):
+            r_audio_src = self.s.get(audio_src, headers=self.header)
             with open(m4a_path, 'wb') as f:
                 # 写入
                 f.write(r_audio_src.content)
